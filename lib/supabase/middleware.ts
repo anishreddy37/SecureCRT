@@ -37,6 +37,13 @@ export async function updateSession(request: NextRequest) {
     data: { user },
   } = await supabase.auth.getUser()
 
+  // Redirect /dashboard to / since the dashboard lives at the root
+  if (request.nextUrl.pathname === '/dashboard') {
+    const url = request.nextUrl.clone()
+    url.pathname = '/'
+    return NextResponse.redirect(url)
+  }
+
   if (
     !user &&
     !request.nextUrl.pathname.startsWith('/auth')
