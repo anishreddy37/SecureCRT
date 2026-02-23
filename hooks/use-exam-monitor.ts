@@ -1,6 +1,8 @@
 import { useEffect, useRef } from 'react'
-import { supabase } from '@/lib/supabase'
+import { createClient } from '@/lib/supabase/client'
 import { toast } from 'sonner'
+
+const supabase = createClient()
 
 interface CheatingEvent {
   eventType: 'tab_switch' | 'fullscreen_exit' | 'no_face_detected' | 'multiple_faces' | 'face_swap' | 'camera_off'

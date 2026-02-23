@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { useParams, useRouter } from 'next/navigation'
-import { supabase } from '@/lib/supabase'
+import { createClient } from '@/lib/supabase/client'
 import { useAuth } from '@/contexts/auth-context'
 import { ExamInterface } from '@/components/exam-interface'
 import { Button } from '@/components/ui/button'
@@ -12,6 +12,7 @@ export default function TakeExamPage() {
   const params = useParams()
   const router = useRouter()
   const { user } = useAuth()
+  const supabase = createClient()
   const examId = params.id as string
   const [enrollmentId, setEnrollmentId] = useState<string | null>(null)
   const [examTitle, setExamTitle] = useState('')

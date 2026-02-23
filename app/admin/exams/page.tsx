@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
-import { supabase } from '@/lib/supabase'
+import { createClient } from '@/lib/supabase/client'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { useAuth } from '@/contexts/auth-context'
@@ -22,6 +22,7 @@ interface Exam {
 
 export default function ExamsPage() {
   const { user } = useAuth()
+  const supabase = createClient()
   const [exams, setExams] = useState<Exam[]>([])
   const [loading, setLoading] = useState(true)
 

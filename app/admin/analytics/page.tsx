@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { supabase } from '@/lib/supabase'
+import { createClient } from '@/lib/supabase/client'
 import { useAuth } from '@/contexts/auth-context'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
@@ -42,6 +42,7 @@ interface CheatingIncident {
 
 export default function AnalyticsPage() {
   const { user } = useAuth()
+  const supabase = createClient()
   const [stats, setStats] = useState<ExamStats[]>([])
   const [incidents, setIncidents] = useState<CheatingIncident[]>([])
   const [loading, setLoading] = useState(true)

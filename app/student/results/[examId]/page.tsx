@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 import { useParams, useRouter } from 'next/navigation'
 import Link from 'next/link'
-import { supabase } from '@/lib/supabase'
+import { createClient } from '@/lib/supabase/client'
 import { useAuth } from '@/contexts/auth-context'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
@@ -34,6 +34,7 @@ export default function ResultsPage() {
   const params = useParams()
   const router = useRouter()
   const { user } = useAuth()
+  const supabase = createClient()
   const examId = params.examId as string
   const [result, setResult] = useState<Result | null>(null)
   const [exam, setExam] = useState<Exam | null>(null)

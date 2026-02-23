@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { supabase } from '@/lib/supabase'
+import { createClient } from '@/lib/supabase/client'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
@@ -14,6 +14,7 @@ import { Checkbox } from '@/components/ui/checkbox'
 export default function CreateExamPage() {
   const router = useRouter()
   const { user } = useAuth()
+  const supabase = createClient()
   const [loading, setLoading] = useState(false)
   const [formData, setFormData] = useState({
     title: '',
