@@ -4,8 +4,6 @@ import React, { createContext, useContext, useEffect, useState } from 'react'
 import { User } from '@supabase/supabase-js'
 import { createClient } from '@/lib/supabase/client'
 
-const supabase = createClient()
-
 interface AuthContextType {
   user: User | null
   userRole: 'admin' | 'student' | null
@@ -21,6 +19,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null)
   const [userRole, setUserRole] = useState<'admin' | 'student' | null>(null)
   const [loading, setLoading] = useState(true)
+  const supabase = createClient()
 
   useEffect(() => {
     // Check if user is already logged in

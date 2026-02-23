@@ -2,8 +2,6 @@ import { useEffect, useRef } from 'react'
 import { createClient } from '@/lib/supabase/client'
 import { toast } from 'sonner'
 
-const supabase = createClient()
-
 interface CheatingEvent {
   eventType: 'tab_switch' | 'fullscreen_exit' | 'no_face_detected' | 'multiple_faces' | 'face_swap' | 'camera_off'
   severity: 'info' | 'warning' | 'critical'
@@ -12,6 +10,7 @@ interface CheatingEvent {
 export function useExamMonitor(enrollmentId: string, isExamActive: boolean) {
   const loggingRef = useRef(false)
   const eventCountRef = useRef<Map<string, number>>(new Map())
+  const supabase = createClient()
 
   // Tab switch detection
   useEffect(() => {
